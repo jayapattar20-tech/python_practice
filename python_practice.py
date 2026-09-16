@@ -1,5 +1,5 @@
 
-def check_marks(marks):
+"""def check_marks(marks):
     if marks>=40:
         return "pass"
     else:
@@ -52,6 +52,7 @@ for r in res:
     print(r["text"],"-",r["reason"])
 #print(show_scams(data))
 
+#Q1
 def square(n):
     return n*n
 print(square(5))
@@ -60,6 +61,7 @@ print(square(1))
 print(square(6))
 print(square(3))
 
+#q2
 def is_even(n):
     if n%2==0:
         return True
@@ -68,16 +70,16 @@ def is_even(n):
 print(is_even(45))
 print(is_even(42))
 
-
+#Q3. Write a function average(numbers) that takes a list of numbers and returns their average.
 def average(num):
     sum=0
     for i in num:
         sum+=i
     return sum/len(num)
-#avg=average(num)/num
 num=(10,20,30,40)
 print(average(num))
 
+#Q4. Given nums = [4, 9, 2, 7, 1, 8], write code to find and print the largest and smallest number without using max()/min() (use a loop instead — builds real understanding).
 nums = [4, 9, 2, 7, 1, 8]
 large=nums[0]
 small=nums[0]
@@ -97,6 +99,7 @@ smallest,largest=find(nums)
 print(smallest)
 print(largest)
 
+#Q5. Given a list of words, write a function longest_word(words) that returns the longest word in the list.
 def longest_word(words):
     long=len(words[0])
     long_word=words[0]
@@ -106,14 +109,15 @@ def longest_word(words):
             long_word=word
 
     return long_word
-#words = ["qwedsc", "asd", "ij"]
+
 words = ["apple", "kiwi"]
 print(longest_word(words))
 
+#Q6. Remove all duplicate values from a list nums = [1, 2, 2, 3, 4, 4, 5] and print the result (hint: look up what a set is).
 nums = [1, 2, 2, 3, 4, 4, 5]
 print(set(nums))
 
-
+#Q7. Create a dictionary that counts how many times each word appears in this sentence:
 sentence = "urgent urgent claim now claim your prize now"
 new_sen=sentence.split()
 print(new_sen)
@@ -125,7 +129,30 @@ for word in new_sen:
         freq[word]+=1
 print(freq)
 
+#Q8. Given this dictionary of student marks:
+#marks = {"Jay": 85, "Ravi": 42, "Priya": 91, "Anil": 38}
+#Write code to print only the names who scored below 40 (fail cases).
 marks = {"Jay": 85, "Ravi": 42, "Priya": 91, "Anil": 38}
 for key,value in marks.items():
     if marks[key]<40:
-        print(key)
+        print(key)"""
+
+#Q9: Write a function find_triggers(message, keywords) that returns a list of which keywords were actually found in the message.
+keywords = ["urgent", "claim", "verify", "kyc", "prize", "winner"]
+message = ["urgent kyc verification needed to claim your prize","you are the winner, now"]
+def find_triggers(message, keywords):
+    found=[]
+    for key in keywords:
+        if key in message:
+            found.append(key)
+    return found
+
+def classify(message, keywords):
+    match=find_triggers(message,keywords)
+    if len(match)>=2:
+        return {"is_spam":True,"matched":match}
+    else:
+        return{"is_spam":False,"matched":match}
+for msg in message:
+    res=classify(msg,keywords)
+    print(res)
