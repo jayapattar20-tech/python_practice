@@ -135,7 +135,7 @@ print(freq)
 marks = {"Jay": 85, "Ravi": 42, "Priya": 91, "Anil": 38}
 for key,value in marks.items():
     if marks[key]<40:
-        print(key)"""
+        print(key)
 
 #Q9: Write a function find_triggers(message, keywords) that returns a list of which keywords were actually found in the message.
 keywords = ["urgent", "claim", "verify", "kyc", "prize", "winner"]
@@ -155,4 +155,46 @@ def classify(message, keywords):
         return{"is_spam":False,"matched":match}
 for msg in message:
     res=classify(msg,keywords)
-    print(res)
+    print(res) """
+
+tasks = []
+task=0
+def add(tasks,task):
+    tasks.append({"task":task,"done":False})
+def view(tasks):
+    if len(tasks)==0:
+        print("no task yet")
+    else:
+        print("your tasks are :",tasks)
+def remove(tasks,taskno):
+    if taskno<1 or taskno>len(tasks):
+        print("invalid task no")
+    else:
+        del tasks[taskno-1]
+def done(tasks,taskdone):
+    if taskdone<1 or taskdone>len(tasks):
+        print("invalid taskno")
+    else:
+        tasks[taskdone-1]["done"]=True
+    
+
+while True:
+    print("1.add task\n2.view task\n3.remove task\n4.exit")
+    choice=input("enter your choice:")
+    if choice=="1":
+        task=input("enter the task")
+        add(tasks,task)
+    elif choice=="2":
+        view(tasks)
+    elif choice=="3":
+        taskno=int(input("enter choice no to remove"))
+        remove(tasks,taskno)
+    elif choice=="4":
+        print("goodbye!")
+        break
+    elif choice=="5":
+        taskdone=int(input("enter task done number"))
+        done(tasks,taskdone)
+    else:
+        print("invalid choice")
+
