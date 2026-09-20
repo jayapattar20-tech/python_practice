@@ -326,7 +326,7 @@ while True:
 
 with open("tasks.txt","r") as file:
     tasklist=file.readlines()
-    print(tasklist)"""
+    print(tasklist)
 import csv
 
 with open("messages.csv","w",newline="") as file:
@@ -343,8 +343,22 @@ with open("messages.csv","r") as file:
     reader=csv.reader(file)
     for row in reader:
         if row[1]=="true":
-            print(row)
+            print(row)"""
         
     
+#import csv
+import pandas as pd
+df=pd.read_csv("messages.csv")
+#print(df)
+print(df.head())
+print(df.columns)
+print(df["message"])
 
 
+
+scam_only=df[df["is_scam"]=="True"]
+print(scam_only)
+
+print(df["is_scam"].value_counts())
+sorted=df.sort_values("message")
+print(sorted)
