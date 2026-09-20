@@ -155,8 +155,8 @@ def classify(message, keywords):
         return{"is_spam":False,"matched":match}
 for msg in message:
     res=classify(msg,keywords)
-    print(res) """
-
+    print(res) 
+# to-do-list code 
 tasks = []
 task=0
 def add(tasks,task):
@@ -197,4 +197,154 @@ while True:
         done(tasks,taskdone)
     else:
         print("invalid choice")
+
+tasks = []
+
+def add(tasks, task):
+    tasks.append({"task": task, "done": False})
+
+def view(tasks):
+    if len(tasks) == 0:
+        print("no task yet")
+    else:
+        for i, t in enumerate(tasks, start=1):
+            status = "✔" if t["done"] else "✘"
+            print(f"{i}. {t['task']} [{status}]")
+
+def remove(tasks, taskno):
+    if taskno < 1 or taskno > len(tasks):
+        print("invalid task no")
+    else:
+        del tasks[taskno-1]
+
+def done(tasks, taskdone):
+    if taskdone < 1 or taskdone > len(tasks):
+        print("invalid task no")
+    else:
+        tasks[taskdone-1]["done"] = True
+
+while True:
+    print("1.add task\n2.view task\n3.remove task\n4.exit\n5.mark task done")
+    choice = input("enter your choice:")
+    if choice == "1":
+        task = input("enter the task")
+        add(tasks, task)
+    elif choice == "2":
+        view(tasks)
+    elif choice == "3":
+        taskno = int(input("enter choice no to remove"))
+        remove(tasks, taskno)
+    elif choice == "4":
+        print("goodbye!")
+        break
+    elif choice == "5":
+        taskdone = int(input("enter task done number"))
+        done(tasks, taskdone)
+    else:
+        print("invalid choice")
+
+with open("notes.txt","w") as file:
+    file.write("this is my first line")
+    file.write("\n")
+    file.write("this is file handling")
+
+with open("notes.txt","r") as file:
+    content=file.read()
+    print(content)
+
+with open("notes.txt","r") as file:
+    for line in file:
+        print(line.strip())
+        
+
+with open("notes.txt","a") as file:
+    file.write("adding new line to file ")
+
+with open("notes.txt","r") as file:
+    for line in file:
+        print(line.strip())
+
+import csv
+with open("message.csv","w",newline="")as file:
+    writer=csv.writer(file)
+    writer.writerow(["message","is_scam"])
+    writer.writerow(["claim your prize","True"])
+    writer.writerow(["meeting at 5pm","False"])
+
+with open("message.csv","r") as file:
+    reader=csv.reader(file)
+    for row in reader:
+        print(row)
+
+
+tasks = []
+
+def add(tasks, task):
+    tasks.append({"task": task, "done": False})
+    with open("tasks.txt","a") as file:
+        file.write(task)
+
+def view(tasks):
+    if len(tasks) == 0:
+        print("no task yet")
+    else:
+        for i, t in enumerate(tasks, start=1):
+            status = "✔" if t["done"] else "✘"
+            print(f"{i}. {t['task']} [{status}]")
+
+def remove(tasks, taskno):
+    if taskno < 1 or taskno > len(tasks):
+        print("invalid task no")
+    else:
+        del tasks[taskno-1]
+
+def done(tasks, taskdone):
+    if taskdone < 1 or taskdone > len(tasks):
+        print("invalid task no")
+    else:
+        tasks[taskdone-1]["done"] = True
+
+while True:
+    print("1.add task\n2.view task\n3.remove task\n4.exit\n5.mark task done")
+    choice = input("enter your choice:")
+    if choice == "1":
+        task = input("enter the task")
+        add(tasks, task)
+    elif choice == "2":
+        view(tasks)
+    elif choice == "3":
+        taskno = int(input("enter choice no to remove"))
+        remove(tasks, taskno)
+    elif choice == "4":
+        print("goodbye!")
+        break
+    elif choice == "5":
+        taskdone = int(input("enter task done number"))
+        done(tasks, taskdone)
+    else:
+        print("invalid choice")
+
+with open("tasks.txt","r") as file:
+    tasklist=file.readlines()
+    print(tasklist)"""
+import csv
+
+with open("messages.csv","w",newline="") as file:
+    writer=csv.writer(file)
+    writer.writerow(["message","is_scam"])
+    writer.writerow(["claim your prize now", "True"])
+    writer.writerow(["meeting at 5pm", "False"])
+    writer.writerow(["claim your prize now", "True"])
+    writer.writerow(["meeting at 5pm", "False"])
+    writer.writerow(["claim your prize now", "True"])
+    writer.writerow(["meeting at 5pm", "False"])
+
+with open("messages.csv","r") as file:
+    reader=csv.reader(file)
+    for row in reader:
+        if row[1]=="true":
+            print(row)
+        
+    
+
 
