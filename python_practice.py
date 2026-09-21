@@ -1,5 +1,5 @@
 
-"""def check_marks(marks):
+def check_marks(marks):
     if marks>=40:
         return "pass"
     else:
@@ -343,22 +343,37 @@ with open("messages.csv","r") as file:
     reader=csv.reader(file)
     for row in reader:
         if row[1]=="true":
-            print(row)"""
+            print(row)
         
     
 #import csv
 import pandas as pd
 df=pd.read_csv("messages.csv")
 #print(df)
+#print(df.head())
+#print(df.columns)
+#print(df["message"])
+
+#print(df.info())
+print(df.describe())
+result=df[df["is_scam"]==True & df["message"].str.contains("urgent")]
+print(result)
+
+import pandas as pd 
+import numpy as np
+df=pd.read_csv("messages.csv")
+print(df)
 print(df.head())
-print(df.columns)
-print(df["message"])
+print(df.info())
+print(df.describe())
+result=df[(df["is_scam"]==True) & (df["message"].str.contains("claim"))]
+print(result)
+df.loc[1,"message"]=np.nan
+print(df)
+print(df.dropna())
+print(df.fillna("unknown"))
 
-
-
-scam_only=df[df["is_scam"]=="True"]
-print(scam_only)
-
-print(df["is_scam"].value_counts())
-sorted=df.sort_values("message")
-print(sorted)
+#print(df.isnull())
+#print(df.isnull().sum())
+#df_drop=df.fillna("unknown")
+#print(df_drop)
