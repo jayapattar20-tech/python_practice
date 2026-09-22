@@ -1,5 +1,5 @@
 
-def check_marks(marks):
+"""def check_marks(marks):
     if marks>=40:
         return "pass"
     else:
@@ -377,3 +377,38 @@ print(df.fillna("unknown"))
 #print(df.isnull().sum())
 #df_drop=df.fillna("unknown")
 #print(df_drop)
+
+from nltk.corpus import stopwords
+
+import string
+def clean_text(text):
+    res=text.lower()
+    res=res.translate(str.maketrans("","",string.punctuation))
+    tokens=res.split()
+    token_no_stop=remove_stopwords(tokens)
+    return tokens,token_no_stop
+
+def remove_stopwords(tokens):
+    stop_words=set(stopwords.words('english'))
+    filtered=[]
+    for word in tokens:
+        if word not in stop_words:
+            filtered.append(word)
+    return filtered
+
+sample1="URGENT: CLAIM your reward!!"
+sample2="URGENT!@$: sdnjdCLAIM yfr$our rseeward!!"
+sample3="UR!GENT: C#LAIM y!our the reward!!"
+sample4="URGENT: CL#AIM your during r#eward!!"
+sample5="URGENT: CL*AIM yo#ur you rew!ard!!"
+
+print(clean_text(sample1))
+print(clean_text(sample2))
+print(clean_text(sample3))
+print(clean_text(sample4))
+print(clean_text(sample5))
+all_tokens=clean_text(sample1)+clean_text(sample2)+clean_text(sample3)+clean_text(sample4)+clean_text(sample5)
+print("lenght of tokens",len(all_tokens))"""
+
+
+
